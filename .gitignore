@@ -1,5 +1,5 @@
 build/
-bioparser/
+# bioparser/
 *.fasta
 CMakeLists.txt
 
