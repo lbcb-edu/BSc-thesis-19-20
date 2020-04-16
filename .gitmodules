@@ -1,3 +1,6 @@
 [submodule "vendor/bioparser"]
 	path = vendor/bioparser
 	url = https://github.com/rvaser/bioparser.git
+[submodule "vendor/minimap2"]
+	path = vendor/minimap2
+	url = https://github.com/lh3/minimap2.git

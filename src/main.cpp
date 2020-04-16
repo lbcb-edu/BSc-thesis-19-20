@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "../sequences/sequences.hpp"
 
@@ -19,6 +20,18 @@ int main(int argc, char* argv[]) {
         std::cout << s << std::endl;
         break;
     }
+
+    std::vector<std::unique_ptr<Paf>> paf_objects;
+    auto paf_parser = bioparser::createParser<bioparser::PafParser, Paf>(argv[2]);
+    paf_parser->parse(paf_objects, -1);
+
+    std::cout << "paf: " << paf_objects.size() << std::endl;
+
+    for (int i = 0; i < paf_objects.size(); i++) {
+        std::unique_ptr<Paf>& tmp = paf_objects[i];
+        std::cout << tmp->q_name_ << " -> " << tmp->t_name_ << " : " << tmp->overlap_length_ << std::endl;
+    }
+
 
     return 0;
 }
