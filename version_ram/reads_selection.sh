@@ -250,7 +250,8 @@ then
 	then
 		mkdir ${output_dir}/transcript_bins
 
-		python ${scripts_folder}/create_transcript_bins.py ${output_dir}/reads_selection/pickle_files $reads ${output_dir}/transcript_bins --threshold $threshold --delete_pickle_files || ( echo >&2 && echo "ERROR in reads_selection.sh script: CREATING TRANSCRIPT BINS FAILED!" >&2 && echo >&2 && exit 1 ) || exit 1
+        #removed --delete_pickle_files!!!
+		python ${scripts_folder}/create_transcript_bins.py ${output_dir}/reads_selection/pickle_files $reads ${output_dir}/transcript_bins --threshold $threshold || ( echo >&2 && echo "ERROR in reads_selection.sh script: CREATING TRANSCRIPT BINS FAILED!" >&2 && echo >&2 && exit 1 ) || exit 1
 
 	elif [ "$make_transcript_bins" == 'no' ]
 	then
