@@ -1,35 +1,44 @@
-#include "sequences.hpp"
-#include <iostream>
+#include <string>
 
-Fast::Fast(const char* name, std::uint32_t name_length,
-            const char* sequence, std::uint32_t sequence_length) :
-            name_(name, name_length),
-            sequence_(sequence, sequence_length) {};
+#include "sequences.h"
 
-Fast::Fast(const char* name, std::uint32_t name_length,
-            const char* sequence, std::uint32_t sequence_length,
-            const char* quality, std::uint32_t quality_length) :
-            name_(name, name_length),
-            sequence_(sequence, sequence_length),
-            quality_(quality, quality_length) {};
+namespace hera {
 
-Paf::Paf(const char* q_name, std::uint32_t q_name_length,
-            std::uint32_t q_length,
-            std::uint32_t q_begin,
-            std::uint32_t q_end,
-            char orientation,
-            const char* t_name, std::uint32_t t_name_length,
-            std::uint32_t t_length,
-            std::uint32_t t_begin,
-            std::uint32_t t_end,
-            std::uint32_t matching_bases,
-            std::uint32_t overlap_length,
-            std::uint32_t mapping_quality) :
-            q_name_(q_name, q_name_length), 
-            q_length_(q_length), q_begin_(q_begin_), q_end_(q_end),
-            orientation_(orientation), t_name_(t_name, t_name_length),
-            t_length_(t_length), t_begin_(t_begin), t_end_(t_end),
-            matching_bases_(matching_bases), overlap_length_(overlap_length), 
-            mapping_quality_(mapping_quality) {};
+  char _bioBaseComplement(char c) {
+    if ((c == 'A') || c == 'a') return 'T';
+    if ((c == 'T') || c == 't') return 'A';
+    if ((c == 'G') || c == 'g') return 'C';
+    if ((c == 'C') || c == 'c') return 'G';
 
+    return c;
+  }
 
+  std::string _bioReverseComplement(const std::string& strData, uint32_t ulStart, uint32_t ulEnd)
+  {
+    std::string strRc(ulEnd - ulStart, 'x');
+    for(uint32_t ulPos = ulStart; ulPos < ulEnd; ulPos++) {
+      strRc[ulEnd - ulPos - 1] = _bioBaseComplement(strData[ulPos]);
+    }
+
+    return strRc;
+  }
+
+  std::string _bioReverseComplement(const std::string& strData)
+  {
+    return _bioReverseComplement(strData, 0, strData.size());
+  }
+
+  Sequence::Sequence(const char* name, uint32_t name_length,
+    const char* sequence, uint32_t sequence_length
+  ) : seq_strName(name, name_length), seq_strData(sequence, sequence_length)
+  {
+  }
+
+  Sequence::Sequence(const char* name, uint32_t name_length,
+    const char* sequence, uint32_t sequence_length,
+    const char* quality, uint32_t quality_length
+  ) : seq_strName(name, name_length), seq_strData(sequence, sequence_length) , seq_strQuality(quality, quality_length)
+  {
+  }
+
+}

@@ -1,0 +1,1 @@
+add_library(sequences sequences.cpp)
