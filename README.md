@@ -23,7 +23,7 @@ cmake ..
 make
 ```
 
-While in ```build`` folder, to run ```hera``` tool:
+While in ```build``` folder, to run ```hera``` tool:
 ```bash
 ./hera contigs.fasta reads.fasta ovlpContRead.paf ovlpReadRead.paf
 ```
