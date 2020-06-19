@@ -420,7 +420,7 @@ namespace hera {
    *	Take care to use each contig only once (since they are present twice, except for the first and last one)
    */
   int SBridger::generateSequences(void) {
-	std::ofstream ispis("output.fasta");
+	std::ofstream ispis("../src/output.fasta");
   	int i = 0;
   	std::set<std::string> usedContigs;
   	for (auto const&  vec_ptr: scaffolds) {

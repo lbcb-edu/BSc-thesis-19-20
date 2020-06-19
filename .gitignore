@@ -1,7 +1,7 @@
 build/
 # example/
 # bioparser/
-*.fasta
+# *.fasta
 # CMakeLists.txt
 
 # Created by https://www.gitignore.io/api/c++,cmake,visualstudiocode
